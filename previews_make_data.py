@@ -13,9 +13,9 @@ import os
 import rasterio
 import torch
 import sys
-sys.path.append('./src/')
-from src import myUNF
-from src import cloudy_class
+#sys.path.append('./src/')
+#from src import myUNF
+#from src import cloudy_class
 from PIL import Image
 import requests
 import cv2
