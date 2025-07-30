@@ -1,2 +1,2 @@
-pws eftiaksa ta data gia to previews labeling sto CVAT
-
+./make_data  ... pws eftiaksa ta data gia to previews labeling sto CVAT
+./calc_clouds ... 
