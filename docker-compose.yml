@@ -1,0 +1,29 @@
+services:
+  tasking_submitter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        CODEARTIFACT_TOKEN: ${CODEARTIFACT_TOKEN}
+    image: previews-clouds
+    container_name: previews-clouds-container
+  #   environment:
+  #     # AWS_PROFILE: "stg-power"
+  #     AWS_PROFILE: "stagingStandard"
+  #     AWS_REGION: "eu-central-1"
+  # #    AWS_CONFIG_FILE: "/root/.aws/config"
+  # #    AWS_SHARED_CREDENTIALS_FILE: "/root/.aws/credentials"
+
+    environment:
+      AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
+      AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
+      AWS_SESSION_TOKEN: "${AWS_SESSION_TOKEN}"
+      AWS_REGION: "eu-central-1"
+
+#    env_file:
+#      - .env
+    volumes:
+      - ${HOME}/.aws:/root/.aws:ro   #copying aws in the root of the docker
+#    entrypoint: ["poetry", "run", "python3.10", "main.py"]
+    ports:
+      - "8002:8002"
