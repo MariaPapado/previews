@@ -1,2 +1,2 @@
 ./make_data  ... pws eftiaksa ta data gia to previews labeling sto CVAT
-./calc_clouds ... 
+./calc_clouds ... kanw predict from scratch ta clouds me to cloud detection model (trained on cloudsen12) 
