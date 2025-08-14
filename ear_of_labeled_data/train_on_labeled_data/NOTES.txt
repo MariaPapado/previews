@@ -1,0 +1,7 @@
+for testing on previews directly use
+
+previews_images_test_download.py to download some previews of a certain customer (see comment inside script)
+
+and then use
+
+test_whole_preview.py to test on the saved preview images
