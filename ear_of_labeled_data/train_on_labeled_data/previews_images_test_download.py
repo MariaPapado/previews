@@ -95,10 +95,12 @@ def extract_clouds(customer, domain, corridor_width, project_start, project_end)
 
 if __name__ == "__main__":
     # Setup
+    ##choose your customer
     customer = 'GNI-2024'
     domain = 'gni.orbitaleye.nl'
     corridor_width = 1000  # meters
-
+    
+    ##here i chose the dates to be after the dates i used to download the previews training data. adjust the dates according to your needs
     date_start = '2025-05-01'
     date_end = '2025-08-13'
 
