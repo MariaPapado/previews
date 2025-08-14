@@ -21,6 +21,27 @@ from PIL import Image
 print('ok')
 
 
+
+def postprocess(image):
+
+    # Find contours
+    contours_first, hierarchy = cv2.findContours(image, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    contours = []
+    for con in contours_first:
+        area = cv2.contourArea(con)
+        if area>400:
+            contours.append(con)
+
+    output = cv2.drawContours(np.zeros((image.shape[0], image.shape[1],3)), contours, -1, (255,255,255), thickness=cv2.FILLED)
+
+    # Smooth the mask
+    blurred_mask = cv2.GaussianBlur(output, (25, 25), 0)
+
+    # Threshold back to binary
+    _, smoothed_mask = cv2.threshold(blurred_mask, 127, 255, cv2.THRESH_BINARY)
+
+    return smoothed_mask
+
 def normalize_single_img(img):  #without stretch
 
     means = img.mean(axis=(0, 1))
@@ -61,7 +82,11 @@ for i, id in enumerate(tqdm(test_ids)):
 
     preds= net(imgs)
     preds = torch.argmax(preds,1).data.cpu().numpy()
-#    print(preds.shape)
-    cv2.imwrite('./whole_preview_tests/pred_{}.png'.format(id), preds[0]*256)
+    preds = np.transpose(preds, (1,2,0))
+
+
+    rgb_preds = postprocess(preds.astype(np.uint8))
+
+    cv2.imwrite('./whole_preview_tests/pred_{}.png'.format(id), rgb_preds)
 
 
