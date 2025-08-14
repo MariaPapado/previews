@@ -16,7 +16,6 @@ import shutil
 import argparse
 from unet_model import *
 from unet_parts import *
-import focal_loss
 print('ok')
 
 
